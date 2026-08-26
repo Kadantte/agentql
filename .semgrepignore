@@ -5,3 +5,16 @@
 
 # Exclude lock files from vulnerability scanning to avoid false positives
 **/*.lock
+
+# Exclude test files from vulnerability scanning
+# Tests don't need security scanning as they are not production code
+**/*test*/*
+**/test.*
+**/*.test.*
+**/*.spec.*
+**/*_test.*
+
+# Exclude minified/bundled vendored JS from scanning
+# These are build artifacts, not source; semgrep times out on large minified files
+# (e.g. rrweb.min.js) and `--error` turns the timeout into a hard CI failure.
+**/*.min.js
